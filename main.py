@@ -74,4 +74,4 @@ async def simplipy(req: SimplifyRequest):
 
     modelService = create_model_service(selected_service)
     res = modelService.generate_simplified_text(input_text)
-    return res
+    return {"response": res}

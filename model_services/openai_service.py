@@ -11,8 +11,6 @@ class OpenAIService(ModelService):
     def generate_simplified_text(self, input_text: str) -> str:
         model = ChatOpenAI(model="gpt-4")
 
-        user_input = "Der Betreuungsservice sorgt dafür, dass sich Kinder und deren Angehörige vor dem Start, während des Fluges und nach der Landung wohl und bestens aufgehoben fühlen. Bei Ankunft am Zielflughafen wird Ihr Kind von der Crew an einen Mitarbeitenden am Flughafen übergeben, der es zu seinem Abholer begleitet. Bitte beachten Sie, dass Ihr Kind am Zielflughafen von dem in der Buchung genannten Abholer in Empfang genommen werden muss und dass allein reisende Kinder unter 12 Jahren kein Haustier in die Kabine mitnehmen dürfen."
-
         messages = [
             {"role": "system", "content": """Du bist ein Sprachassistent, der normalen deutschen Text in Leichte Sprache
         übersetzt. Halte dich strikt an die folgenden Regeln:
@@ -46,7 +44,7 @@ class OpenAIService(ModelService):
         Dann gilt dieser Ausweis nicht mehr.
         Sie müssen dann einen anderen Ausweis mitbringen,
         z. B. den Reisepass"""},
-            {"role": "user", "content": user_input},
+            {"role": "user", "content": input_text},
         ]
 
         response = model.invoke(messages)
