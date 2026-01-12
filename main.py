@@ -65,7 +65,10 @@ class SimplifyRequest(BaseModel):
     input_text: str
     selected_service: str
 
-
+async def call_service_method(input_text: str, selected_service: str, method_name: str):
+    modelService = create_model_service(selected_service)
+    method = getattr(modelService, method_name)
+    return method(input_text)
 
 @app.post("/simplipy")
 async def simplipy(req: SimplifyRequest):
@@ -75,3 +78,11 @@ async def simplipy(req: SimplifyRequest):
     modelService = create_model_service(selected_service)
     res = modelService.generate_simplified_text(input_text)
     return {"response": res}
+
+@app.post("/sentence_simplifications")
+async def sentence_simplifications(req: SimplifyRequest):
+    return {"response": await call_service_method(req.input_text, req.selected_service, "generate_sentence_simplifications")}
+
+@app.post("/sentence_suggestions")
+async def sentence_suggestions(req: SimplifyRequest):
+    return {"response": await call_service_method(req.input_text, req.selected_service, "generate_sentence_suggestions")}
