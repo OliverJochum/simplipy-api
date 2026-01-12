@@ -11,3 +11,12 @@ To start API locally:
 3.3 OpenAI installations:
 `pip install -U "langchain[openai]"`
 4. Launch API: `fastapi dev main.py`
+
+Dependency management via poetry:
+
+Poetry install: `poetry install --extras all`
+
+Run venv via poetry:
+
+`poetry env activate`
+`poetry run fastapi dev main.py`

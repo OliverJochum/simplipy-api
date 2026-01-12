@@ -1,0 +1,43 @@
+[project]
+name = "simplipy-api"
+version = "0.1.0"
+description = ""
+authors = [
+    { name = "Oliver Jochum", email = "oliver.jochum@yahoo.com" }
+]
+readme = "README.md"
+
+# Use a realistic, widely supported Python range
+requires-python = ">=3.11,<3.13"
+
+dependencies = [
+    # FastAPI with standard extras
+    "fastapi[standard]>=0.125.0,<0.126.0",
+
+    # Environment variables
+    "python-dotenv>=1.0,<2.0",
+]
+
+[project.optional-dependencies]
+
+# Local / LLaMA inference
+llama = [
+    "llama-cpp-python>=0.3.16,<1.0",
+    "huggingface-hub>=0.21,<1.0",
+]
+
+# OpenAI / LangChain
+openai = [
+    "langchain-openai>=1.1.7,<2.0",
+]
+
+# Everything
+all = [
+    "llama-cpp-python>=0.3.16,<1.0",
+    "huggingface-hub>=0.21,<1.0",
+    "langchain-openai>=1.1.7,<2.0",
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
