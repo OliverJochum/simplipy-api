@@ -70,7 +70,7 @@ async def call_service_method(input_text: str, selected_service: str, method_nam
     method = getattr(modelService, method_name)
     return method(input_text)
 
-@app.post("/simplipy")
+@app.post("/generate_text")
 async def simplipy(req: SimplifyRequest):
     input_text = req.input_text
     selected_service = req.selected_service
