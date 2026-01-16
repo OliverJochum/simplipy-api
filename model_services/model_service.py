@@ -4,7 +4,7 @@ class ModelService(ABC):
 
     # Prompt model with system and user prompts, return response content
     @abstractmethod
-    def prompt(self, sys_prompt: str, usr_prompt: str) -> str:
+    def prompt(self, usr_prompt: str, sys_prompt: str|None = None) -> str:
         pass
 
     # Generate simplified text from complex input text
@@ -12,6 +12,8 @@ class ModelService(ABC):
     def generate_simplified_text(self, input_text: str) -> str:
         pass
     
+    # the following two methods should probably also take in a variable for number of suggestions, currently hardcoded to 3
+
     # Generate sentence simplifications from complex input text
     @abstractmethod
     def generate_sentence_simplifications(self, input_text: str) -> list[str]:
