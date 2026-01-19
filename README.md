@@ -14,7 +14,9 @@ To start API locally:
 
 Run spaCy german mode: `poetry run python -m spacy download de_core_news_md`
 
-Download ODE wordnet: ```
+Download ODE wordnet: 
+
+```bash
 poetry run python - <<EOF
 import wn
 
