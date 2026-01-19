@@ -12,6 +12,8 @@ To start API locally:
 `pip install -U "langchain[openai]"`
 4. Launch API: `fastapi dev main.py`
 
+Run spaCy german mode: `poetry run python -m spacy download de_core_news_md`
+
 Dependency management via poetry:
 
 Poetry install: `poetry install --extras all`
