@@ -33,4 +33,4 @@ GENERATE_SIMPLIFIED_TEXT_PROMPT = "Input: Normaler deutscher Text. Output: Über
 SENTENCE_SIMPLIFICATION_PROMPT = "Input: 1 Satz in normaler deutschen Sprache. Output: 3 alternative übersetzte Sätze in Leichter Sprache. Output als Array von Strings. Striktes Output Format: ['suggestion1', 'suggestion2', 'suggestion3']"
 SENTENCE_SUGGESTION_PROMPT = "Input: 1 Satz in Leichter Sprache. Output: 3 alternative Vorschläge in Leichter Sprache. Output als Array von Strings. Striktes Output Format: ['suggestion1', 'suggestion2', 'suggestion3']"
 
-SEMANTIC_THRESHOLD = 0.75
+SEMANTIC_THRESHOLD = 0.55

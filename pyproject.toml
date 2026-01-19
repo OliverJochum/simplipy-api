@@ -19,7 +19,8 @@ dependencies = [
     # Environment variables
     "python-dotenv>=1.0,<2.0",
     "spacy>=3.7,<4.0",
-    "nltk>=3.8,<4.0"
+    "nltk>=3.8,<4.0",
+    "wn>=0.14.0",
 ]
 
 [tool.poetry]

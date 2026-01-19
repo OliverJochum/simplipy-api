@@ -3358,6 +3358,25 @@ files = [
 ]
 
 [[package]]
+name = "wn"
+version = "0.14.0"
+description = "Wordnet interface library"
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "wn-0.14.0-py3-none-any.whl", hash = "sha256:535dd9731f24c8cea8ec661744ac7575d05a5607258f5fcc56d1b18bf3164b7f"},
+    {file = "wn-0.14.0.tar.gz", hash = "sha256:cf6983105c7b427e4b2b28e2e02805871bc251b9597972dfda18f2e22ea53234"},
+]
+
+[package.dependencies]
+httpx = "*"
+
+[package.extras]
+editor = ["wn-editor"]
+web = ["starlette"]
+
+[[package]]
 name = "wrapt"
 version = "2.0.1"
 description = "Module for decorators, wrappers and monkey patching."
@@ -3598,4 +3617,4 @@ openai = ["langchain-openai"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<3.13"
-content-hash = "1357a422a6b9c06d8f291fd6297fda78376f653ef4526ea8e2bc99e6c4a24a73"
+content-hash = "3ecbd082dba3f3119b4296f33c75aeac6be1a9fd02a8e76bc599534907fca165"

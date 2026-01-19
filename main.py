@@ -1,9 +1,14 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+import spacy
 from model_services.model_service_factory import create_model_service
+from synonyms.synonym_service import SynonymService
+from constants import SEMANTIC_THRESHOLD
 
 app = FastAPI()
 
+nlp = spacy.load("de_core_news_md")
+synonym_service = SynonymService(nlp)
 
 @app.get("/")
 async def root():
@@ -65,6 +70,10 @@ class SimplifyRequest(BaseModel):
     input_text: str
     selected_service: str
 
+class SynonymRequest(BaseModel):
+    input_word: str
+    sentence: str
+
 async def call_service_method(input_text: str, selected_service: str, method_name: str):
     modelService = create_model_service(selected_service)
     method = getattr(modelService, method_name)
@@ -86,3 +95,10 @@ async def sentence_simplifications(req: SimplifyRequest):
 @app.post("/sentence_suggestions")
 async def sentence_suggestions(req: SimplifyRequest):
     return {"response": await call_service_method(req.input_text, req.selected_service, "generate_sentence_suggestions")}
+
+@app.post("/synonyms")
+async def synonyms(req: SynonymRequest):
+    input_word = req.input_word
+    sentence = req.sentence
+    synonyms = synonym_service.get_synonyms(input_word, sentence, SEMANTIC_THRESHOLD)
+    return {"response": synonyms}

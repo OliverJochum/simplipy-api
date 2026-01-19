@@ -14,6 +14,14 @@ To start API locally:
 
 Run spaCy german mode: `poetry run python -m spacy download de_core_news_md`
 
+Download ODE wordnet: ```
+poetry run python - <<EOF
+import wn
+
+wn.download("odenet:1.4")
+EOF
+```
+
 Dependency management via poetry:
 
 Poetry install: `poetry install --extras all`
