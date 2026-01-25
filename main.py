@@ -1,4 +1,7 @@
 from fastapi import FastAPI
+import multiprocessing as mp
+if __name__ == "__main__":
+    mp.set_start_method("spawn", force=True)
 from pydantic import BaseModel
 import spacy
 from model_services.model_service_factory import create_model_service
