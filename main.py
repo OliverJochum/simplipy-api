@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 import multiprocessing as mp
+
+from analysis.score_factory import create_score
 if __name__ == "__main__":
     mp.set_start_method("spawn", force=True)
 from pydantic import BaseModel
 import spacy
 from model_services.model_service_factory import create_model_service
 from synonyms.synonym_service import SynonymService
-from analysis.bertscore import calculate
 from utils.split_sentences import split_sentences
 from constants import SEMANTIC_THRESHOLD
 
@@ -71,10 +72,14 @@ async def llama_test():
             )
     return {"response": response["choices"][0]["message"]["content"]}
 
-class BertScoreRequest(BaseModel):
+class BERTScoreRequest(BaseModel):
     candidate_text: str
     reference_text: str
 
+class ScoreRequest(BaseModel):
+    candidate_text: str
+    reference_text: str
+    selected_score: str
 class SimplifyRequest(BaseModel):
     input_text: str
     selected_service: str
@@ -112,7 +117,8 @@ async def synonyms(req: SynonymRequest):
     synonyms = synonym_service.get_synonyms(input_word, sentence, SEMANTIC_THRESHOLD)
     return {"response": synonyms}
 
-@app.post("/bertscore")
-async def bertscore(req: BertScoreRequest):
-    score_value = calculate([req.candidate_text], [req.reference_text])
-    return {"response": score_value}
+@app.post("/score")
+async def score(req: ScoreRequest):
+    score = create_score(req.selected_score)
+    score_value = score.calculate([req.candidate_text], [req.reference_text])
+    return {"response": f"{score_value:.4f}"}
