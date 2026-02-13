@@ -27,10 +27,10 @@ class CustomLlamaService(ModelService):
         return response["choices"][0]["message"]["content"]
 
     def generate_simplified_text(self, input_text: str) -> str:
-        return {"response": self.prompt(input_text)}
+        return self.prompt(input_text)
     
     def generate_sentence_simplifications(self, input_text: str) -> list[str]:
-        return {"response": self.prompt(input_text, SENTENCE_SIMPLIFICATION_PROMPT)}
+        return self.prompt(input_text, SENTENCE_SIMPLIFICATION_PROMPT)
     
     def generate_sentence_suggestions(self, input_text: str) -> list[str]:
-        return {"response": self.prompt(input_text, SENTENCE_SUGGESTION_PROMPT)}
+        return self.prompt(input_text, SENTENCE_SUGGESTION_PROMPT)
