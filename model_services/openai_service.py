@@ -17,7 +17,7 @@ class OpenAIService(ModelService):
     os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
     def prompt(self, usr_prompt: str, sys_prompt: str|None = None) -> str:
-        model = ChatOpenAI(model="gpt-4")
+        model = ChatOpenAI(model="gpt-5-mini")
         messages = []
 
         if sys_prompt is None:
