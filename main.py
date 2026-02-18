@@ -7,14 +7,14 @@ if __name__ == "__main__":
 from pydantic import BaseModel
 import spacy
 from model_services.model_service_factory import create_model_service
-from synonyms.synonym_service import SynonymService
+from synonyms.synonym_service_impl import SynonymServiceImpl
 from utils.split_sentences import split_sentences
 from constants import SEMANTIC_THRESHOLD
 
 app = FastAPI()
 
 nlp = spacy.load("de_core_news_md")
-synonym_service = SynonymService(nlp)
+synonym_service = SynonymServiceImpl(nlp)
 
 @app.get("/")
 async def root():
