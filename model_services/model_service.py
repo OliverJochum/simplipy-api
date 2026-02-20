@@ -9,7 +9,7 @@ class ModelService(ABC):
 
     # Generate simplified text from complex input text
     @abstractmethod
-    def generate_simplified_text(self, input_text: str) -> str:
+    def generate_simplified_text(self, input_text: str, glossary_string: str | None = None) -> str:
         pass
     
     # the following two methods should probably also take in a variable for number of suggestions, currently hardcoded to 3

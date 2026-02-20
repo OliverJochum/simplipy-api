@@ -26,7 +26,7 @@ class CustomLlamaService(ModelService):
         response = llm.create_chat_completion(messages=messages)
         return response["choices"][0]["message"]["content"]
 
-    def generate_simplified_text(self, input_text: str) -> str:
+    def generate_simplified_text(self, input_text: str, glossary_string: str | None = None) -> str:
         return self.prompt(input_text)
     
     def generate_sentence_simplifications(self, input_text: str) -> list[str]:

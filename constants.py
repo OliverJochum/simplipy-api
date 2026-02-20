@@ -32,5 +32,6 @@ THIRD_PARTY_SYSTEM_PROMPT_RULES = """
 GENERATE_SIMPLIFIED_TEXT_PROMPT = "Input: Normaler deutscher Text. Output: Übersetzung in Leichte Sprache."
 SENTENCE_SIMPLIFICATION_PROMPT = "Input: 1 Satz in normaler deutschen Sprache. Output: 3 alternative übersetzte Sätze in Leichter Sprache. Output als Array von Strings. Striktes Output Format: ['suggestion1', 'suggestion2', 'suggestion3']"
 SENTENCE_SUGGESTION_PROMPT = "Input: 1 Satz in Leichter Sprache. Output: 3 alternative Vorschläge in Leichter Sprache. Output als Array von Strings. Striktes Output Format: ['suggestion1', 'suggestion2', 'suggestion3']"
+GLOSSARY_PROMPT = "Input: Normaler deutscher Text, sowie ein Glossar mit schwierigen Wörtern/Abkürzungen und deren Definitionen. Wenn dir etwas im Text nicht bekannt ist, schau erst im Glossar nach. Output: Übersetzung in Leichte Sprache, unter Verwendung der Definitionen aus dem Glossar, falls eines der schwierigen Wörter im Satz vorkommt. Glossar: "
 
 SEMANTIC_THRESHOLD = 0.55

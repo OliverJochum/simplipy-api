@@ -83,6 +83,7 @@ class ScoreRequest(BaseModel):
 class SimplifyRequest(BaseModel):
     input_text: str
     selected_service: str
+    glossary_string: str | None = None
 
 class SynonymRequest(BaseModel):
     input_word: str
@@ -97,9 +98,12 @@ async def call_service_method(input_text: str, selected_service: str, method_nam
 async def simplipy(req: SimplifyRequest):
     input_text = req.input_text
     selected_service = req.selected_service
+    glossary_string = req.glossary_string if "glossary_string" in req.model_fields_set else None
+
+    print(f"Received request with input_text: {input_text}, selected_service: {selected_service}, glossary_string: {glossary_string}")
 
     modelService = create_model_service(selected_service)
-    res = modelService.generate_simplified_text(input_text)
+    res = modelService.generate_simplified_text(input_text, glossary_string = glossary_string)
     return {"response": res}
 
 @app.post("/sentence_simplifications")
