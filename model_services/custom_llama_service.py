@@ -6,6 +6,7 @@ from constants import (
     SENTENCE_SUGGESTION_PROMPT,
 )
 
+# Implementation of ModelService for custom Llama model provided by Thorben Schomacker's huggingface repository: tschomacker/lora_Llama-3.1-8B-Instruct-bnb-4bit_gguf
 class CustomLlamaService(ModelService):
 
     def prompt(self, usr_prompt: str, sys_prompt: str|None = None) -> str:

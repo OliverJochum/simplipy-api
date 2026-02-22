@@ -12,6 +12,7 @@ from constants import (
     SENTENCE_SUGGESTION_PROMPT,
 )
 
+# Implementation of ModelService for OpenAi's GPT models
 class OpenAIService(ModelService):
     
     load_dotenv()
