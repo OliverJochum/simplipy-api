@@ -1,3 +1,5 @@
+# Original prompt taken from Thorben Schomacker's paper: LLMs for Easy Language Translation: A Case Study on German Public Authorities Web Pages
+
 THIRD_PARTY_SYSTEM_PROMPT_ROLE_PREFIX = "Rolle: Sprachassistent, zur Übersetzung normaler deutschen Text in Leichte Sprache."
 
 THIRD_PARTY_SYSTEM_PROMPT_RULES = """
