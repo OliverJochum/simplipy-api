@@ -15,11 +15,12 @@ from constants import (
 # Implementation of ModelService for OpenAi's GPT models
 class OpenAIService(ModelService):
     
-    load_dotenv()
-    os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+    def __init__(self):
+        load_dotenv()
+        os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+        self.model = ChatOpenAI(model="gpt-4")
 
     def prompt(self, usr_prompt: str, sys_prompt: str|None = None) -> str:
-        model = ChatOpenAI(model="gpt-5-mini")
         messages = []
 
         if sys_prompt is None:
@@ -30,7 +31,7 @@ class OpenAIService(ModelService):
                 {"role": "user", "content": usr_prompt},
             ]
             
-        return model.invoke(messages)
+        return self.model.invoke(messages)
 
     def generate_simplified_text(self, input_text: str, glossary_string: str | None = None) -> str:
         system_prompt = THIRD_PARTY_SYSTEM_PROMPT_ROLE_PREFIX + GLOSSARY_PROMPT + glossary_string + THIRD_PARTY_SYSTEM_PROMPT_RULES if glossary_string else THIRD_PARTY_SYSTEM_PROMPT_ROLE_PREFIX + GENERATE_SIMPLIFIED_TEXT_PROMPT + THIRD_PARTY_SYSTEM_PROMPT_RULES

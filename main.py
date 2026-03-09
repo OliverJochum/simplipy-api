@@ -13,6 +13,13 @@ from constants import SEMANTIC_THRESHOLD
 
 app = FastAPI()
 
+services = {}
+
+@app.on_event("startup")
+def load_services():
+    services["openai"] = create_model_service("openai")
+    # services["llama"] = create_model_service("llama")
+
 nlp = spacy.load("de_core_news_md")
 synonym_service = SynonymServiceImpl(nlp)
 
@@ -90,7 +97,7 @@ class SynonymRequest(BaseModel):
     sentence: str
 
 async def call_service_method(input_text: str, selected_service: str, method_name: str):
-    modelService = create_model_service(selected_service)
+    modelService = services[selected_service]
     method = getattr(modelService, method_name)
     return method(input_text)
 

@@ -9,12 +9,14 @@ from constants import (
 # Implementation of ModelService for custom Llama model provided by Thorben Schomacker's huggingface repository: tschomacker/lora_Llama-3.1-8B-Instruct-bnb-4bit_gguf
 class CustomLlamaService(ModelService):
 
-    def prompt(self, usr_prompt: str, sys_prompt: str|None = None) -> str:
-        llm = Llama.from_pretrained(
+    def __init__(self):
+        self.llm = Llama.from_pretrained(
             repo_id="tschomacker/lora_Llama-3.1-8B-Instruct-bnb-4bit_gguf",
             filename="unsloth.Q4_K_M.gguf",
             n_ctx=8192,
         )
+
+    def prompt(self, usr_prompt: str, sys_prompt: str|None = None) -> str:
         messages = []
 
         if sys_prompt is None:
@@ -24,7 +26,7 @@ class CustomLlamaService(ModelService):
                 {"role": "system", "content": sys_prompt},
                 {"role": "user","content": usr_prompt}
                     ]
-        response = llm.create_chat_completion(messages=messages)
+        response = self.llm.create_chat_completion(messages=messages)
         return response["choices"][0]["message"]["content"]
 
     def generate_simplified_text(self, input_text: str, glossary_string: str | None = None) -> str:
